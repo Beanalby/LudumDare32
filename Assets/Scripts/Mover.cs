@@ -5,7 +5,9 @@ namespace LudumDare32 {
     [RequireComponent(typeof(CharacterController2D))]
     public class Mover : MonoBehaviour {
         public float groundDampening = 20f;
-        public float maxSpeed = 5;
+        public float maxSpeed = 3;
+        public float jumpSpeed = 10;
+        private bool isJumping = false;
 
         private CharacterController2D cc;
 
@@ -13,11 +15,20 @@ namespace LudumDare32 {
             cc = GetComponent<CharacterController2D>();
         }
 
+        public void Jump() {
+            if (cc.isGrounded) {
+                isJumping = true;
+            }
+        }
+
         public void Move(float x) {
             if (!cc.isGrounded) {
                 cc.velocity.y += Time.deltaTime * Physics2D.gravity.y;
             }
-
+            if (isJumping) {
+                cc.velocity.y += jumpSpeed;
+                isJumping = false;
+            }
             Vector3 newV = cc.velocity;
             newV.x = Mathf.Lerp(newV.x, x * maxSpeed, Time.fixedDeltaTime * groundDampening);
             cc.velocity = newV;

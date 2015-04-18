@@ -11,6 +11,11 @@ namespace LudumDare32
         public void Start() {
             mover = GetComponent<Mover>();
         }
+        public void Update() {
+            if (Input.GetButtonDown("Jump")) {
+                mover.Jump();
+            }
+        }
         public void FixedUpdate() {
             mover.Move(Input.GetAxis("Horizontal"));
         }
