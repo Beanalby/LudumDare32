@@ -13,7 +13,7 @@ public class TongueLink : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
     }
     public void FixedUpdate() {
-        //SnapJoint();
+        SnapJoint();
     }
 
     public void SnapJoint() {

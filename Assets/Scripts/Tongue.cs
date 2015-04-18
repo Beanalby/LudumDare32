@@ -21,6 +21,7 @@ namespace LudumDare32 {
             if (Input.GetButtonDown("Fire1")) {
                 if (links == null) {
                     Extend();
+                    //Attach(null, transform.position + 5 * Vector3.right);
                     //Attach(null);
                 } else {
                     Remove();
@@ -31,7 +32,8 @@ namespace LudumDare32 {
         private void Create(Vector3 targetPos) {
             // first link connects to us
             Rigidbody2D previousLink = GetComponent<Rigidbody2D>();
-            int numSegments = Mathf.CeilToInt((targetPos - mouth.position).magnitude / tongueLength);
+            //int numSegments = Mathf.CeilToInt((targetPos - mouth.position).magnitude / tongueLength);
+            int numSegments = Mathf.RoundToInt((targetPos - mouth.position).magnitude / tongueLength);
             // figure out the angle between us and the target, and set positionOffset accordingly
             Vector3 offset = targetPos - mouth.position;
             float angle = Mathf.Rad2Deg * Mathf.Atan(offset.y / offset.x);
@@ -63,12 +65,15 @@ namespace LudumDare32 {
 
         public void Attach(GameObject newTarget, Vector3 attachPos) {
             // TODO attach to the target!
-            target = newTarget.GetComponent<HingeJoint2D>();
             Create(attachPos);
             if (newTarget != null) {
+                target = newTarget.GetComponent<HingeJoint2D>();
                 target.connectedBody = links[links.Length - 1].GetComponent<Rigidbody2D>();
+                Debug.Log("target at " + target.transform.position + ", attachPos=" + attachPos + ", anchorPos = " + target.anchor + ", inverseAttach gives + " + target.transform.InverseTransformPoint(attachPos));
+                target.anchor = target.transform.InverseTransformPoint(attachPos);
                 target.enabled = true;
             }
+            //Debug.Break();
         }
 
         public void Extend() {

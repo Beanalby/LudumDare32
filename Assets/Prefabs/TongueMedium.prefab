@@ -38,7 +38,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113876}
-  m_Mass: .00100000005
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
@@ -57,7 +57,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .239999995, y: .25}
+  m_Offset: {x: .180000007, y: 0}
   serializedVersion: 2
   m_Size: {x: .189999998, y: .100000001}
 --- !u!114 &11498994
@@ -107,8 +107,8 @@ HingeJoint2D:
   m_Enabled: 1
   m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 0}
-  m_Anchor: {x: .150000006, y: .25}
-  m_ConnectedAnchor: {x: .330000013, y: .25}
+  m_Anchor: {x: .0900000036, y: 0}
+  m_ConnectedAnchor: {x: .270000011, y: 0}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
