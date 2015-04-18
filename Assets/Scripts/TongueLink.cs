@@ -5,7 +5,7 @@ public class TongueLink : MonoBehaviour {
     public int segmentNum;
 
     private HingeJoint2D joint;
-    private float snapThreshold = .1f;
+    private float snapThreshold = .05f;
     Rigidbody2D body;
 
     public void Start() {
@@ -13,7 +13,7 @@ public class TongueLink : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
     }
     public void FixedUpdate() {
-        SnapJoint();
+        //SnapJoint();
     }
 
     public void SnapJoint() {

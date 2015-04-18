@@ -37,6 +37,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &182250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 419244}
+  m_Layer: 0
+  m_Name: Mouth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &419244
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .529999971, y: .404000014, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 494646}
+  m_RootOrder: 0
 --- !u!4 &430564
 Transform:
   m_ObjectHideFlags: 1
@@ -48,7 +75,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 494646}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &494646
 Transform:
   m_ObjectHideFlags: 1
@@ -59,6 +86,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 419244}
   - {fileID: 430564}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -173,7 +201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef362c85ad313e48be31ff3c3062bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tonguePrefab: {fileID: 195766, guid: ad186bc15372f6449a3ddfe4269f7bb4, type: 2}
+  tongueLinkPrefab: {fileID: 11480488, guid: ad186bc15372f6449a3ddfe4269f7bb4, type: 2}
+  extendPrefab: {fileID: 11438838, guid: 8d18ae45217cf2b4aa75ed123c9cbc8a, type: 2}
+  mouth: {fileID: 419244}
+  tongueSprite: {fileID: 21300000, guid: 4abba49b05a9a5b4491980226d6b0dcf, type: 3}
 --- !u!212 &21233870
 SpriteRenderer:
   m_ObjectHideFlags: 1
