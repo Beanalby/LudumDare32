@@ -12,6 +12,7 @@ namespace LudumDare32 {
         private HingeJoint2D target;
         private float tongueLength; // derived automatically at start
         private TongueLink[] links = null;
+        private TongueExtending extender;
 
         public void Start() {
             HingeJoint2D joint = tongueLinkPrefab.GetComponent<HingeJoint2D>();
@@ -19,7 +20,7 @@ namespace LudumDare32 {
         }
 
         public void Update() {
-            if (Input.GetButtonDown("Fire1")) {
+            if (Input.GetButtonDown("Fire1") && extender == null) {
                 if (links == null) {
                     Extend();
                     //Attach(null, transform.position + 5 * Vector3.right);
@@ -71,6 +72,7 @@ namespace LudumDare32 {
 
         public void Attach(GameObject newTarget, Vector3 attachPos) {
             // TODO attach to the target!
+            extender = null;
             CreateSegments(attachPos);
             if (newTarget != null) {
                 target = newTarget.GetComponent<HingeJoint2D>();
@@ -82,12 +84,12 @@ namespace LudumDare32 {
         }
 
         public void Extend() {
-            TongueExtending extend = Instantiate(extendPrefab.gameObject).GetComponent<TongueExtending>();
+            extender = Instantiate(extendPrefab.gameObject).GetComponent<TongueExtending>();
             if (transform.localScale.x < 0) {
-                extend.direction = -1;
+                extender.direction = -1;
             }
-            extend.mouth = mouth;
-            extend.tongue = this;
+            extender.mouth = mouth;
+            extender.tongue = this;
         }
 
         public void Detach() {
