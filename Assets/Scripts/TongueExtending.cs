@@ -60,6 +60,10 @@ namespace LudumDare32 {
         }
 
         public void OnTriggerEnter2D(Collider2D other) {
+            // triggers don't count!
+            if (other.isTrigger) {
+                return;
+            }
             // we hit something, but only attach to it if it's attackable
             GameObject target = null;
             if (other.gameObject.layer == LayerMask.NameToLayer("Attackable")) {

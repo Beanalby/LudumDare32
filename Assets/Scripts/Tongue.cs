@@ -25,12 +25,12 @@ namespace LudumDare32 {
                     //Attach(null, transform.position + 5 * Vector3.right);
                     //Attach(null);
                 } else {
-                    Remove();
+                    Detach();
                 }
             }
         }
 
-        private void Create(Vector3 targetPos) {
+        private void CreateSegments(Vector3 targetPos) {
             // first link connects to us
             Rigidbody2D previousLink = GetComponent<Rigidbody2D>();
             //int numSegments = Mathf.CeilToInt((targetPos - mouth.position).magnitude / tongueLength);
@@ -71,12 +71,13 @@ namespace LudumDare32 {
 
         public void Attach(GameObject newTarget, Vector3 attachPos) {
             // TODO attach to the target!
-            Create(attachPos);
+            CreateSegments(attachPos);
             if (newTarget != null) {
                 target = newTarget.GetComponent<HingeJoint2D>();
                 target.connectedBody = links[links.Length - 1].GetComponent<Rigidbody2D>();
                 target.anchor = target.transform.InverseTransformPoint(attachPos);
                 target.enabled = true;
+                target.SendMessage("TongueAttached", attachPos, SendMessageOptions.DontRequireReceiver);
             }
         }
 
@@ -89,12 +90,13 @@ namespace LudumDare32 {
             extend.tongue = this;
         }
 
-        public void Remove() {
+        public void Detach() {
             foreach (TongueLink link in links) {
                 Destroy(link.gameObject);
             }
             links = null;
             if (target != null) {
+                target.SendMessage("TongueDetached", SendMessageOptions.DontRequireReceiver);
                 target.enabled = false;
                 target = null;
             }
