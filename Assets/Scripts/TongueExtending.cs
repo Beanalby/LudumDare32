@@ -36,6 +36,7 @@ namespace LudumDare32 {
             float percent = (Time.time - expandStart) / duration;
             if (percent >= 1) {
                 // we haven't hit anything, give up
+                tongue.Attach(null, targetPos);
                 Destroy(gameObject);
                 gizmoPos = Vector3.zero;
             } else {
@@ -59,11 +60,14 @@ namespace LudumDare32 {
         }
 
         public void OnTriggerEnter2D(Collider2D other) {
+            // we hit something, but only attach to it if it's attackable
+            GameObject target = null;
             if (other.gameObject.layer == LayerMask.NameToLayer("Attackable")) {
-                gizmoPos = targetPos;
-                tongue.Attach(other.gameObject, targetPos);
-                Destroy(gameObject);
-              }
+                target = other.gameObject;
+            }
+            tongue.Attach(target, targetPos);
+            gizmoPos = targetPos;
+            Destroy(gameObject);
         }
     }
 }
