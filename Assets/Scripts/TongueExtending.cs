@@ -64,6 +64,9 @@ namespace LudumDare32 {
             if (other.isTrigger) {
                 return;
             }
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
+                return;
+            }
             // we hit something, but only attach to it if it's attackable
             GameObject target = null;
             if (other.gameObject.layer == LayerMask.NameToLayer("Attackable")) {

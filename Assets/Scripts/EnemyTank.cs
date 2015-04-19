@@ -37,6 +37,7 @@ namespace LudumDare32 {
                 // we're not kinematic, check if we're upright enough to enable it
                 if (isUpright()) {
                     rb.isKinematic = true;
+                    cc.enabled = true;
                     // get rid of any small rotation left over
                     transform.rotation = Quaternion.identity;
                 }
@@ -54,7 +55,8 @@ namespace LudumDare32 {
         public void TongueAttached(Vector3 attachPos) {
             isTongued = true;
             rb.isKinematic = false;
-        }
+            cc.enabled = false;
+       }
 
         public void TongueDetached() {
             isTongued = false;

@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -.202000007, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 419244}
@@ -96,10 +96,10 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164772}
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_FixedAngle: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
   _skinWidth: .0199999996
   platformMask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 4352
   triggerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -187,6 +187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74ddf1460a52e048b7b202727abe5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSprites:
+  - {fileID: 21300000, guid: 439384377bae2b344aa526e8069e015e, type: 3}
+  - {fileID: 21300000, guid: 687097ab23ee8e14791ac01008a6b917, type: 3}
+  jumpSprite: {fileID: 21300000, guid: 8af4ef4db7197ee4d90b3818bf339694, type: 3}
   groundDampening: 20
   maxSpeed: 5
   jumpSpeed: 10
@@ -201,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef362c85ad313e48be31ff3c3062bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tongueLinkPrefab: {fileID: 11480488, guid: ad186bc15372f6449a3ddfe4269f7bb4, type: 2}
+  tongueLinkPrefab: {fileID: 11498994, guid: eadee9455f78aee44ad249edad87188f, type: 2}
   extendPrefab: {fileID: 11438838, guid: 8d18ae45217cf2b4aa75ed123c9cbc8a, type: 2}
   mouth: {fileID: 419244}
   tongueSprite: {fileID: 21300000, guid: 4abba49b05a9a5b4491980226d6b0dcf, type: 3}

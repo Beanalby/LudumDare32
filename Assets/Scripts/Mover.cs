@@ -4,15 +4,24 @@ using System.Collections;
 namespace LudumDare32 {
     [RequireComponent(typeof(CharacterController2D))]
     public class Mover : MonoBehaviour {
+        public Sprite[] walkSprites;
+        public Sprite jumpSprite;
         public float groundDampening = 20f;
         public float maxSpeed = 3;
         public float jumpSpeed = 10;
+
         private bool isJumping = false;
+        private SpriteRenderer sr;
+        private float walkCycleDelay = .7f;
+        private int walkCycleIndex = 0;
 
         private CharacterController2D cc;
 
         void Start() {
             cc = GetComponent<CharacterController2D>();
+            sr = GetComponentInChildren<SpriteRenderer>();
+            StartCoroutine(WalkCycle());
+            walkCycleDelay -= maxSpeed * .1f;
         }
 
         public void Jump() {
@@ -27,6 +36,7 @@ namespace LudumDare32 {
             }
             if (isJumping) {
                 cc.velocity.y += jumpSpeed;
+                sr.sprite = jumpSprite;
                 isJumping = false;
             }
             Vector3 newV = cc.velocity;
@@ -53,5 +63,23 @@ namespace LudumDare32 {
             cc.move(delta);
         }
 
+        public void FixedUpdate() {
+            // check if we need to clear the jumpSprite
+            if (cc.enabled && sr.sprite == jumpSprite && cc.isGrounded) {
+                sr.sprite = walkSprites[walkCycleIndex];
+            }
+        }
+
+        IEnumerator WalkCycle() {
+            while (true) {
+                if (cc.enabled && sr.sprite != jumpSprite) {
+                    if (cc.velocity.magnitude > .1f) {
+                        walkCycleIndex = (walkCycleIndex + 1) % walkSprites.Length;
+                        sr.sprite = walkSprites[walkCycleIndex];
+                    }
+                }
+                yield return new WaitForSeconds(walkCycleDelay);
+            }
+        }
     }
 }
