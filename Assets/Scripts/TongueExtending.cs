@@ -48,9 +48,11 @@ namespace LudumDare32 {
         }
 
         public void OnTriggerEnter2D(Collider2D other) {
-            Debug.Log("Collided with " + other.name);
-            tongue.Attach(other.gameObject, targetPos);
-            Destroy(gameObject);
+            if (other.gameObject.layer == LayerMask.NameToLayer("Attackable")) {
+                gizmoPos = targetPos;
+                tongue.Attach(other.gameObject, targetPos);
+                Destroy(gameObject);
+            }
         }
     }
 }

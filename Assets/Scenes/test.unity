@@ -396,7 +396,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 494646, guid: 2d3b7946c737be74d8cde4e3309e9e65, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11431160, guid: 2d3b7946c737be74d8cde4e3309e9e65, type: 2}
       propertyPath: platformMask.m_Bits
