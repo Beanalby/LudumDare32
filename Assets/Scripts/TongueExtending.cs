@@ -6,6 +6,8 @@ namespace LudumDare32 {
         [HideInInspector]
         public Transform mouth;
         public Tongue tongue;
+        [HideInInspector]
+        public float direction = 1;
 
         private float maxExpand = 5f;
         private float duration = .5f;
@@ -30,14 +32,15 @@ namespace LudumDare32 {
                 Destroy(gameObject);
                 gizmoPos = Vector3.zero;
             } else {
-                targetPos = launchPos + (percent * maxExpand) * Vector3.right;
+                targetPos = launchPos + (percent * maxExpand) * (direction * Vector3.right);
+                
                 //gizmoPos = targetPos;
                 Vector3 offset = targetPos - transform.position;
                 float angle = Mathf.Rad2Deg * Mathf.Atan(offset.y / offset.x);
                 //Debug.Log("mouth=" + transform.position + ", target=" + targetPos + ", offset=" + offset + ", angle=" + angle);
                 // rotate us so the side ends up 
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-                transform.localScale = new Vector3(offset.magnitude, 1, 0);
+                transform.localScale = new Vector3(direction * offset.magnitude, 1, 0);
             }
         }
         public void OnDrawGizmos() {

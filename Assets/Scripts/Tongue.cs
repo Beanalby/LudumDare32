@@ -37,6 +37,9 @@ namespace LudumDare32 {
             // figure out the angle between us and the target, and set positionOffset accordingly
             Vector3 offset = targetPos - mouth.position;
             float angle = Mathf.Rad2Deg * Mathf.Atan(offset.y / offset.x);
+            if (targetPos.x - mouth.position.x < 0) {
+                angle += 180;
+            }
             Vector3 positionOffset = new Vector3(tongueLength, 0f, 0);
             Quaternion rot = Quaternion.Euler(new Vector3(0, 0, angle));
             positionOffset = rot * positionOffset;
@@ -69,15 +72,16 @@ namespace LudumDare32 {
             if (newTarget != null) {
                 target = newTarget.GetComponent<HingeJoint2D>();
                 target.connectedBody = links[links.Length - 1].GetComponent<Rigidbody2D>();
-                Debug.Log("target at " + target.transform.position + ", attachPos=" + attachPos + ", anchorPos = " + target.anchor + ", inverseAttach gives + " + target.transform.InverseTransformPoint(attachPos));
                 target.anchor = target.transform.InverseTransformPoint(attachPos);
                 target.enabled = true;
             }
-            //Debug.Break();
         }
 
         public void Extend() {
-             TongueExtending extend = Instantiate(extendPrefab.gameObject).GetComponent<TongueExtending>();
+            TongueExtending extend = Instantiate(extendPrefab.gameObject).GetComponent<TongueExtending>();
+            if (transform.localScale.x < 0) {
+                extend.direction = -1;
+            }
             extend.mouth = mouth;
             extend.tongue = this;
         }
