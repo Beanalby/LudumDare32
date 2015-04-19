@@ -6,6 +6,9 @@ namespace LudumDare32 {
         [HideInInspector]
         public Transform mouth;
         public Tongue tongue;
+        public Transform extendingTexture;
+        public Transform extendingCollider;
+
         [HideInInspector]
         public float direction = 1;
 
@@ -20,8 +23,12 @@ namespace LudumDare32 {
         public void Start() {
             expandStart = Time.time;
             transform.position = mouth.position;
-            transform.localScale = Vector3.zero;
+            extendingTexture.localScale = Vector3.up;
             launchPos = transform.position;
+            extendingCollider.transform.localPosition = Vector3.zero;
+            if (direction == -1) {
+                extendingCollider.transform.localScale = new Vector3(-1, 1, 1);
+            }
         }
 
         public void FixedUpdate() {
@@ -33,14 +40,15 @@ namespace LudumDare32 {
                 gizmoPos = Vector3.zero;
             } else {
                 targetPos = launchPos + (percent * maxExpand) * (direction * Vector3.right);
-                
-                //gizmoPos = targetPos;
+
+                gizmoPos = targetPos;
                 Vector3 offset = targetPos - transform.position;
                 float angle = Mathf.Rad2Deg * Mathf.Atan(offset.y / offset.x);
                 //Debug.Log("mouth=" + transform.position + ", target=" + targetPos + ", offset=" + offset + ", angle=" + angle);
                 // rotate us so the side ends up 
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-                transform.localScale = new Vector3(direction * offset.magnitude, 1, 0);
+                extendingTexture.localScale = new Vector3(direction * offset.magnitude, 1, 0);
+                extendingCollider.transform.position = targetPos;
             }
         }
         public void OnDrawGizmos() {
@@ -55,7 +63,7 @@ namespace LudumDare32 {
                 gizmoPos = targetPos;
                 tongue.Attach(other.gameObject, targetPos);
                 Destroy(gameObject);
-            }
+              }
         }
     }
 }

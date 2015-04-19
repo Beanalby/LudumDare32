@@ -8,6 +8,7 @@ namespace LudumDare32 {
         public Transform mouth;
         public Sprite tongueSprite;
 
+        private int minSegments = 10;
         private HingeJoint2D target;
         private float tongueLength; // derived automatically at start
         private TongueLink[] links = null;
@@ -34,6 +35,8 @@ namespace LudumDare32 {
             Rigidbody2D previousLink = GetComponent<Rigidbody2D>();
             //int numSegments = Mathf.CeilToInt((targetPos - mouth.position).magnitude / tongueLength);
             int numSegments = Mathf.RoundToInt((targetPos - mouth.position).magnitude / tongueLength);
+            // always make at least a few segments, otherwise things get weird
+            numSegments = Mathf.Max(numSegments, minSegments);
             // figure out the angle between us and the target, and set positionOffset accordingly
             Vector3 offset = targetPos - mouth.position;
             float angle = Mathf.Rad2Deg * Mathf.Atan(offset.y / offset.x);
