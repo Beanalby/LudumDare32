@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11405488}
   - 114: {fileID: 11434086}
   - 233: {fileID: 23321616}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: EnemyTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   _skinWidth: .0199999996
   platformMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8448
   triggerMask:
     serializedVersion: 2
     m_Bits: 4294967295

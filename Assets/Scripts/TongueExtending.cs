@@ -69,7 +69,7 @@ namespace LudumDare32 {
             }
             // we hit something, but only attach to it if it's attackable
             GameObject target = null;
-            if (other.gameObject.layer == LayerMask.NameToLayer("Attackable")) {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Attackable") || other.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
                 target = other.gameObject;
             }
             tongue.Attach(target, targetPos);
