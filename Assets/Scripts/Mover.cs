@@ -2,24 +2,31 @@
 using System.Collections;
 
 namespace LudumDare32 {
+    public delegate void DeathListener(Mover obj);
+
     [RequireComponent(typeof(CharacterController2D))]
     public class Mover : MonoBehaviour {
+
         public Sprite[] walkSprites;
         public Sprite jumpSprite;
+        public Sprite deathSprite;
         public float groundDampening = 20f;
         public float maxSpeed = 3;
         public float jumpSpeed = 10;
+        public DeathListener OnDeath;
 
         private bool isJumping = false;
         private SpriteRenderer sr;
+        private Rigidbody2D rb;
         private float walkCycleDelay = .7f;
         private int walkCycleIndex = 0;
-
+        
         private CharacterController2D cc;
 
         void Start() {
             cc = GetComponent<CharacterController2D>();
             sr = GetComponentInChildren<SpriteRenderer>();
+            rb = GetComponent<Rigidbody2D>();
             StartCoroutine(WalkCycle());
             walkCycleDelay -= maxSpeed * .1f;
         }
@@ -62,7 +69,7 @@ namespace LudumDare32 {
             //}
             cc.move(delta);
         }
-
+        
         public void FixedUpdate() {
             // check if we need to clear the jumpSprite
             if (cc.enabled && sr.sprite == jumpSprite && cc.isGrounded) {
@@ -81,5 +88,22 @@ namespace LudumDare32 {
                 yield return new WaitForSeconds(walkCycleDelay);
             }
         }
+        public void Die() {
+            cc.enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+            rb.isKinematic = false;
+            rb.velocity = new Vector2(Random.Range(-5, 5), 8);
+            float angle = Random.Range(60, 120);
+            if (Random.Range(0, 2) == 0) {
+                angle = -angle;
+            }
+            rb.angularVelocity = angle;
+            sr.sprite = deathSprite;
+            Destroy(gameObject, 5f);
+            this.enabled = false;
+            if (OnDeath != null) {
+                OnDeath(this);
+            }
+       }
     }
 }

@@ -144,7 +144,7 @@ MonoBehaviour:
   _skinWidth: .0199999996
   platformMask:
     serializedVersion: 2
-    m_Bits: 8448
+    m_Bits: 12544
   triggerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -191,6 +191,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 439384377bae2b344aa526e8069e015e, type: 3}
   - {fileID: 21300000, guid: 687097ab23ee8e14791ac01008a6b917, type: 3}
   jumpSprite: {fileID: 21300000, guid: 8af4ef4db7197ee4d90b3818bf339694, type: 3}
+  deathSprite: {fileID: 21300000, guid: 0e2743993538a4748b6ed0523919d9e1, type: 3}
   groundDampening: 20
   maxSpeed: 5
   jumpSpeed: 10

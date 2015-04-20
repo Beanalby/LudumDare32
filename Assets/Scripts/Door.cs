@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Door : MonoBehaviour {
 
-    private float distScale = 1f;
+    public float distScale = 1f;
 
     private Vector3 basePos;
     private Rigidbody2D rb;

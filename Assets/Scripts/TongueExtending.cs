@@ -45,7 +45,6 @@ namespace LudumDare32 {
                 gizmoPos = targetPos;
                 Vector3 offset = targetPos - transform.position;
                 float angle = Mathf.Rad2Deg * Mathf.Atan(offset.y / offset.x);
-                //Debug.Log("mouth=" + transform.position + ", target=" + targetPos + ", offset=" + offset + ", angle=" + angle);
                 // rotate us so the side ends up 
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle));
                 extendingTexture.localScale = new Vector3(direction * offset.magnitude, 1, 0);

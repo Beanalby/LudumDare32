@@ -45,7 +45,7 @@ GameObject:
   - 50: {fileID: 5016960}
   - 114: {fileID: 11457738}
   m_Layer: 8
-  m_Name: Door
+  m_Name: SpringDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b909d93bdde68dd42b3a49e77c9fbe5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distScale: 1
 --- !u!212 &21200454
 SpriteRenderer:
   m_ObjectHideFlags: 1

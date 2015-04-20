@@ -71,5 +71,8 @@ namespace LudumDare32 {
             }
             return angle < upgrightThresold;
         }
+        public void Die() {
+            this.enabled = false;
+        }
     }
 }

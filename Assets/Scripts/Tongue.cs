@@ -19,8 +19,8 @@ namespace LudumDare32 {
             tongueLength = (joint.anchor - joint.connectedAnchor).magnitude;
         }
 
-        public void Update() {
-            if (Input.GetButtonDown("Fire1") && extender == null) {
+        public void ActivateTongue() {
+            if (extender == null) {
                 if (links == null) {
                     Extend();
                     //Attach(null, transform.position + 5 * Vector3.right);
@@ -93,15 +93,21 @@ namespace LudumDare32 {
         }
 
         public void Detach() {
-            foreach (TongueLink link in links) {
-                Destroy(link.gameObject);
+            if (links != null) {
+                foreach (TongueLink link in links) {
+                    Destroy(link.gameObject);
+                }
+                links = null;
             }
-            links = null;
             if (target != null) {
                 target.SendMessage("TongueDetached", SendMessageOptions.DontRequireReceiver);
                 target.enabled = false;
                 target = null;
             }
+        }
+
+        public void Die() {
+            Detach();
         }
     }
 }
