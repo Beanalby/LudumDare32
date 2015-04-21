@@ -8,9 +8,7 @@ namespace LudumDare32 {
             if (other.gameObject.layer != LayerMask.NameToLayer("Player")) {
                 return;
             }
-            Debug.Log(Time.time + " " + name + " hit " + other.name + ", setting myself to active spawn point");
             GameDriver.Instance.spawnName = this.name;
         }
-
     }
 }
