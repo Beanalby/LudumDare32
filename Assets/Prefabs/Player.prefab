@@ -192,6 +192,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 687097ab23ee8e14791ac01008a6b917, type: 3}
   jumpSprite: {fileID: 21300000, guid: 8af4ef4db7197ee4d90b3818bf339694, type: 3}
   deathSprite: {fileID: 21300000, guid: 0e2743993538a4748b6ed0523919d9e1, type: 3}
+  jumpSound: {fileID: 8300000, guid: 709a3ba0d27c55b4ea5bafa21a525073, type: 3}
+  dieSound: {fileID: 8300000, guid: 7b19fe0f20fb0af43aff3bf865b0732a, type: 3}
   groundDampening: 20
   maxSpeed: 5
   jumpSpeed: 10
@@ -210,6 +212,10 @@ MonoBehaviour:
   extendPrefab: {fileID: 11438838, guid: 8d18ae45217cf2b4aa75ed123c9cbc8a, type: 2}
   mouth: {fileID: 419244}
   tongueSprite: {fileID: 21300000, guid: 4abba49b05a9a5b4491980226d6b0dcf, type: 3}
+  extendingSounds:
+  - {fileID: 8300000, guid: 5df9b9531a30c7347b3e2e22934b0ec1, type: 3}
+  - {fileID: 8300000, guid: ff571a769624be8438957d826e6d4d3e, type: 3}
+  attachSound: {fileID: 8300000, guid: 48841110a52fe954db49af08521d2989, type: 3}
 --- !u!212 &21233870
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -7,6 +7,8 @@ namespace LudumDare32 {
         public TongueExtending extendPrefab;
         public Transform mouth;
         public Sprite tongueSprite;
+        public AudioClip[] extendingSounds;
+        public AudioClip attachSound;
 
         private int minSegments = 10;
         private HingeJoint2D target;
@@ -75,6 +77,7 @@ namespace LudumDare32 {
             extender = null;
             CreateSegments(attachPos);
             if (newTarget != null) {
+                AudioSource.PlayClipAtPoint(attachSound, Camera.main.transform.position);
                 target = newTarget.GetComponent<HingeJoint2D>();
                 target.connectedBody = links[links.Length - 1].GetComponent<Rigidbody2D>();
                 target.anchor = target.transform.InverseTransformPoint(attachPos);
@@ -90,6 +93,8 @@ namespace LudumDare32 {
             }
             extender.mouth = mouth;
             extender.tongue = this;
+            AudioClip clip = extendingSounds[Random.Range(0, extendingSounds.Length)];
+            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
         }
 
         public void Detach() {

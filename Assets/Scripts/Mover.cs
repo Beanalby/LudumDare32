@@ -10,6 +10,7 @@ namespace LudumDare32 {
         public Sprite[] walkSprites;
         public Sprite jumpSprite;
         public Sprite deathSprite;
+        public AudioClip jumpSound, dieSound;
         public float groundDampening = 20f;
         public float maxSpeed = 3;
         public float jumpSpeed = 10;
@@ -45,6 +46,7 @@ namespace LudumDare32 {
                 cc.velocity.y += jumpSpeed;
                 sr.sprite = jumpSprite;
                 isJumping = false;
+                AudioSource.PlayClipAtPoint(jumpSound, Camera.main.transform.position);
             }
             Vector3 newV = cc.velocity;
             newV.x = Mathf.Lerp(newV.x, x * maxSpeed, Time.fixedDeltaTime * groundDampening);
@@ -89,6 +91,7 @@ namespace LudumDare32 {
             }
         }
         public void Die() {
+            AudioSource.PlayClipAtPoint(dieSound, Camera.main.transform.position);
             cc.enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
             rb.isKinematic = false;

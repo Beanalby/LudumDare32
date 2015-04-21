@@ -106,6 +106,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ca2c2ed01435ef840819d64759914fd7, type: 3}
   jumpSprite: {fileID: 21300000, guid: 250704bb72dfd5447b2371d381505795, type: 3}
   deathSprite: {fileID: 21300000, guid: 5a117c19365593542988109d0d24bfd6, type: 3}
+  jumpSound: {fileID: 8300000, guid: 709a3ba0d27c55b4ea5bafa21a525073, type: 3}
+  dieSound: {fileID: 8300000, guid: 7b19fe0f20fb0af43aff3bf865b0732a, type: 3}
   groundDampening: 20
   maxSpeed: 1
   jumpSpeed: 10
