@@ -8,12 +8,41 @@ namespace LudumDare32 {
         }
         private static GameDriver _instance = null;
 
+        public string spawnName;
+
         public void Awake() {
-            if (_instance != null) {
-                Debug.LogError("Can't have two gameDrivers!");
+            if (_instance != null && Instance != this) {
+                // there was already a GameDriver, get rid of this one
                 Destroy(gameObject);
+                return;
             }
+            DontDestroyOnLoad(transform.gameObject);
             _instance = this;
+        }
+
+        public void Start() {
+            InitLevel();
+        }
+        public void OnLevelWasLoaded(int level) {
+            InitLevel();
+        }
+
+        public void InitLevel() {
+            if (spawnName != "") {
+                // move the player to the active spawn point
+                GameObject spawn = GameObject.Find(spawnName);
+                if (spawn == null) {
+                    Debug.LogError("Can't find spawnpoint [" + spawnName + "]!");
+                    Debug.Break();
+                    return;
+                }
+                Player player = GameObject.FindObjectOfType<Player>();
+                player.transform.position = spawn.transform.position;
+                // move the camera to the player immedaitely
+                Vector3 pos = Camera.main.transform.position;
+                pos.x = player.transform.position.x;
+                Camera.main.transform.position = pos;
+            }
         }
 
         public void PlayerDied() {
@@ -23,6 +52,9 @@ namespace LudumDare32 {
         private IEnumerator _playerDied() {
             yield return new WaitForSeconds(2);
             Application.LoadLevel(Application.loadedLevel);
+        }
+        public void OnDestroy() {
+            Debug.Log("GameDriver getting destroyed!");
         }
     }
 }
