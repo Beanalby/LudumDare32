@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace LudumDare32 {
+
     public class GameDriver : MonoBehaviour {
         public static GameDriver Instance {
             get { return _instance; }
@@ -19,11 +21,13 @@ namespace LudumDare32 {
             DontDestroyOnLoad(transform.gameObject);
             _instance = this;
         }
-
+        public void OnEnable() {
+            SceneManager.sceneLoaded += OnLevelFinishedLoading;
+        }
         public void Start() {
             InitLevel();
         }
-        public void OnLevelWasLoaded(int level) {
+        public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
             InitLevel();
         }
 
@@ -51,10 +55,7 @@ namespace LudumDare32 {
 
         private IEnumerator _playerDied() {
             yield return new WaitForSeconds(2);
-            Application.LoadLevel(Application.loadedLevel);
-        }
-        public void OnDestroy() {
-            Debug.Log("GameDriver getting destroyed!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
